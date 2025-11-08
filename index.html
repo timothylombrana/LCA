@@ -147,6 +147,29 @@
         font-weight: 500;
       }
 
+      .competitor-card h4 a {
+        color: #0a3d47;
+        text-decoration: none;
+        transition: color 0.2s ease;
+      }
+
+      .competitor-card h4 a::after {
+        content: " ↗";
+        font-size: 0.8em;
+        opacity: 0.5;
+        transition: opacity 0.2s ease;
+        margin-left: 4px;
+      }
+
+      .competitor-card h4 a:hover {
+        color: #2b9bb4;
+        text-decoration: underline;
+      }
+
+      .competitor-card h4 a:hover::after {
+        opacity: 1;
+      }
+
       .price-tag {
         display: inline-block;
         background: #c08862;
@@ -224,9 +247,23 @@
         border-left: 3px solid #2b9bb4;
       }
 
+      .table-wrapper {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        margin: 20px 0;
+      }
+
       @media (max-width: 768px) {
         header h1 {
           font-size: 1.8em;
+        }
+
+        header p {
+          font-size: 1em;
+        }
+
+        .card {
+          padding: 20px;
         }
 
         .chart-container {
@@ -235,6 +272,67 @@
 
         .location-grid {
           grid-template-columns: 1fr;
+        }
+
+        .stats-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+
+        table {
+          font-size: 0.85em;
+        }
+
+        th,
+        td {
+          padding: 10px 8px;
+        }
+
+        /* Stack table headers and data on very small screens */
+        @supports (display: grid) {
+          .table-wrapper.mobile-cards table {
+            border: 0;
+          }
+
+          .table-wrapper.mobile-cards thead {
+            display: none;
+          }
+
+          .table-wrapper.mobile-cards tr {
+            display: block;
+            margin-bottom: 20px;
+            border: 1px solid #e9ecef;
+            border-radius: 4px;
+            background: white;
+            overflow: hidden;
+          }
+
+          .table-wrapper.mobile-cards td {
+            display: grid;
+            grid-template-columns: 120px 1fr;
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #e9ecef;
+          }
+
+          .table-wrapper.mobile-cards td:last-child {
+            border-bottom: 0;
+          }
+
+          .table-wrapper.mobile-cards td::before {
+            content: attr(data-label);
+            font-weight: 600;
+            color: #0a3d47;
+          }
+        }
+      }
+
+      @media (max-width: 480px) {
+        .stats-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .stat-box .number {
+          font-size: 2em;
         }
       }
 
@@ -371,36 +469,38 @@
         </div>
 
         <h3>Real Estate Cost Examples (3,000 sq ft)</h3>
-        <table>
-          <thead>
-            <tr>
-              <th>Location</th>
-              <th>Annual Base Rent</th>
-              <th>Triple-Net (Est.)</th>
-              <th>Total Annual</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Downtown Premium</td>
-              <td>$150,000 ($50/sq ft)</td>
-              <td>$60,000-90,000</td>
-              <td><strong>$210,000-240,000</strong></td>
-            </tr>
-            <tr>
-              <td>South Congress</td>
-              <td>$135,000 ($45/sq ft)</td>
-              <td>$55,000-85,000</td>
-              <td><strong>$190,000-220,000</strong></td>
-            </tr>
-            <tr>
-              <td>Mueller/East Austin</td>
-              <td>$114,000 ($38/sq ft)</td>
-              <td>$50,000-75,000</td>
-              <td><strong>$164,000-189,000</strong></td>
-            </tr>
-          </tbody>
-        </table>
+        <div class="table-wrapper mobile-cards">
+          <table>
+            <thead>
+              <tr>
+                <th>Location</th>
+                <th>Annual Base Rent</th>
+                <th>Triple-Net (Est.)</th>
+                <th>Total Annual</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td data-label="Location">Downtown Premium</td>
+                <td data-label="Annual Base Rent">$150,000 ($50/sq ft)</td>
+                <td data-label="Triple-Net (Est.)">$60,000-90,000</td>
+                <td data-label="Total Annual"><strong>$210,000-240,000</strong></td>
+              </tr>
+              <tr>
+                <td data-label="Location">South Congress</td>
+                <td data-label="Annual Base Rent">$135,000 ($45/sq ft)</td>
+                <td data-label="Triple-Net (Est.)">$55,000-85,000</td>
+                <td data-label="Total Annual"><strong>$190,000-220,000</strong></td>
+              </tr>
+              <tr>
+                <td data-label="Location">Mueller/East Austin</td>
+                <td data-label="Annual Base Rent">$114,000 ($38/sq ft)</td>
+                <td data-label="Triple-Net (Est.)">$50,000-75,000</td>
+                <td data-label="Total Annual"><strong>$164,000-189,000</strong></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
 
         <div class="highlight">
           <strong>Market Context:</strong>
@@ -428,7 +528,7 @@
         <h3>Established Players</h3>
 
         <div class="competitor-card">
-          <h4>Houndstooth Coffee</h4>
+          <h4><a href="https://www.houndstoothcoffee.com/" target="_blank" rel="noopener noreferrer">Houndstooth Coffee</a></h4>
           <div class="price-tag">$4-7+</div>
           <ul>
             <li>6 locations including Frost Tower downtown, Domain</li>
@@ -440,7 +540,7 @@
         </div>
 
         <div class="competitor-card">
-          <h4>Figure 8 Coffee Purveyors</h4>
+          <h4><a href="https://www.figure8coffee.com/" target="_blank" rel="noopener noreferrer">Figure 8 Coffee Purveyors</a></h4>
           <div class="price-tag">$4-7</div>
           <ul>
             <li>"Where baristas go for coffee" (self-described)</li>
@@ -451,7 +551,7 @@
         </div>
 
         <div class="competitor-card">
-          <h4>Proud Mary</h4>
+          <h4><a href="https://proudmarycoffee.com/" target="_blank" rel="noopener noreferrer">Proud Mary</a></h4>
           <div class="price-tag">$16 pour-overs</div>
           <div class="price-tag">$23 coffee flights</div>
           <ul>
@@ -465,7 +565,7 @@
         </div>
 
         <div class="competitor-card">
-          <h4>Intelligentsia</h4>
+          <h4><a href="https://www.intelligentsia.com/" target="_blank" rel="noopener noreferrer">Intelligentsia</a></h4>
           <div class="price-tag">$6.75 nitro</div>
           <ul>
             <li>Chicago-based, Peet's-owned</li>
@@ -475,7 +575,7 @@
         </div>
 
         <div class="competitor-card">
-          <h4>Mañana</h4>
+          <h4><a href="https://www.southcongresshotel.com/manana/" target="_blank" rel="noopener noreferrer">Mañana</a></h4>
           <div class="price-tag">$5-7 drinks</div>
           <ul>
             <li>South Congress Hotel location</li>
@@ -488,7 +588,7 @@
         </div>
 
         <div class="competitor-card">
-          <h4>Desnudo Coffee</h4>
+          <h4><a href="https://desnudocoffee.com/" target="_blank" rel="noopener noreferrer">Desnudo Coffee</a></h4>
           <div class="price-tag">$4-7 drinks</div>
           <ul>
             <li>
@@ -515,7 +615,7 @@
         <h3>New Entrants (2025)</h3>
 
         <div class="competitor-card" style="border-left-color: #c08862">
-          <h4>La La Land Kind Cafe (Opened July 2025)</h4>
+          <h4><a href="https://www.lalalandkindcafe.com/" target="_blank" rel="noopener noreferrer">La La Land Kind Cafe</a> (Opened July 2025)</h4>
           <ul>
             <li><strong>Location:</strong> 1400 S Congress Ave</li>
             <li>20+ locations across TX/CA, Dallas-based</li>
@@ -525,7 +625,7 @@
         </div>
 
         <div class="competitor-card" style="border-left-color: #c08862">
-          <h4>Black Fox Coffee (Opening late 2025/early 2026)</h4>
+          <h4><a href="https://www.blackfoxcoffee.com/" target="_blank" rel="noopener noreferrer">Black Fox Coffee</a> (Opening late 2025/early 2026)</h4>
           <ul>
             <li><strong>Location:</strong> Near Indeed Tower downtown</li>
             <li>NYC-based with 4 existing locations</li>
@@ -563,37 +663,39 @@
             comparable urban specialty coffee markets</em
           >
         </p>
-        <table>
-          <thead>
-            <tr>
-              <th>Shop Type</th>
-              <th>Daily Customers</th>
-              <th>Avg Ticket</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Small indie shops</td>
-              <td>100-300</td>
-              <td>$7-10</td>
-            </tr>
-            <tr>
-              <td>Medium specialty</td>
-              <td>200-500</td>
-              <td>$10-15</td>
-            </tr>
-            <tr>
-              <td>High-traffic urban</td>
-              <td>500-700</td>
-              <td>$10-15</td>
-            </tr>
-            <tr>
-              <td>Coffee + food integration</td>
-              <td>300-500</td>
-              <td>$12-16</td>
-            </tr>
-          </tbody>
-        </table>
+        <div class="table-wrapper mobile-cards">
+          <table>
+            <thead>
+              <tr>
+                <th>Shop Type</th>
+                <th>Daily Customers</th>
+                <th>Avg Ticket</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td data-label="Shop Type">Small indie shops</td>
+                <td data-label="Daily Customers">100-300</td>
+                <td data-label="Avg Ticket">$7-10</td>
+              </tr>
+              <tr>
+                <td data-label="Shop Type">Medium specialty</td>
+                <td data-label="Daily Customers">200-500</td>
+                <td data-label="Avg Ticket">$10-15</td>
+              </tr>
+              <tr>
+                <td data-label="Shop Type">High-traffic urban</td>
+                <td data-label="Daily Customers">500-700</td>
+                <td data-label="Avg Ticket">$10-15</td>
+              </tr>
+              <tr>
+                <td data-label="Shop Type">Coffee + food integration</td>
+                <td data-label="Daily Customers">300-500</td>
+                <td data-label="Avg Ticket">$12-16</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
 
         <h3>Daypart Distribution</h3>
         <div class="chart-container">
