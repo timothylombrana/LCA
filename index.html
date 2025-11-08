@@ -106,6 +106,29 @@
         font-weight: 500;
       }
 
+      .location-card h4 a {
+        color: #0a3d47;
+        text-decoration: none;
+        transition: color 0.2s ease;
+      }
+
+      .location-card h4 a::after {
+        content: " ↗";
+        font-size: 0.8em;
+        opacity: 0.5;
+        transition: opacity 0.2s ease;
+        margin-left: 4px;
+      }
+
+      .location-card h4 a:hover {
+        color: #2b9bb4;
+        text-decoration: underline;
+      }
+
+      .location-card h4 a:hover::after {
+        opacity: 1;
+      }
+
       .stat-box {
         background: #2b9bb4;
         color: white;
@@ -394,6 +417,63 @@
       .menu-badge.disabled::after {
         content: "";
       }
+
+      /* Location Badge Styles */
+      .location-badge {
+        display: inline-block;
+        background: white;
+        color: #0a3d47;
+        padding: 6px 14px;
+        border-radius: 16px;
+        border: 2px solid #e0e0e0;
+        font-size: 0.7em;
+        font-weight: 600;
+        text-decoration: none;
+        margin-left: 10px;
+        transition: all 0.3s ease;
+        vertical-align: middle;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        letter-spacing: 0.03em;
+        text-transform: uppercase;
+      }
+
+      .location-badge:hover {
+        background: #0a3d47;
+        color: white;
+        border-color: #0a3d47;
+        box-shadow: 0 4px 8px rgba(10, 61, 71, 0.3);
+        transform: translateY(-1px);
+      }
+
+      .location-badge::after {
+        content: " 📍";
+        font-size: 1em;
+        margin-left: 3px;
+      }
+
+      /* Badge container for better mobile layout */
+      .badge-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        align-items: center;
+        margin-top: 8px;
+      }
+
+      @media (max-width: 768px) {
+        .competitor-card h4 {
+          margin-bottom: 12px;
+        }
+
+        .badge-container {
+          margin-top: 12px;
+        }
+
+        .menu-badge,
+        .location-badge {
+          margin-left: 0;
+        }
+      }
     </style>
   </head>
   <body>
@@ -441,7 +521,9 @@
         <h2>Priority Neighborhoods</h2>
         <div class="location-grid">
           <div class="location-card">
-            <h4>Downtown Austin (78701)</h4>
+            <h4>
+              <a href="https://www.google.com/maps/place/Downtown+Austin,+Austin,+TX+78701/@30.2686733,-97.7460248,14z/data=!3m1!4b1!4m6!3m5!1s0x8644b50bba444723:0x711d88b3bc38df33!8m2!3d30.2669444!4d-97.7427778!16s%2Fm%2F0pcw52b?entry=ttu" target="_blank" rel="noopener noreferrer">Downtown Austin (78701)</a>
+            </h4>
             <ul style="margin: 0; padding-left: 20px">
               <li><strong>Income:</strong> $154,867 median</li>
               <li><strong>Education:</strong> 78.7% bachelor's+</li>
@@ -455,7 +537,9 @@
           </div>
 
           <div class="location-card">
-            <h4>South Congress (78704)</h4>
+            <h4>
+              <a href="https://www.google.com/maps/place/South+Congress,+Austin,+TX+78704/@30.2449438,-97.7528088,15z/data=!3m1!4b1!4m6!3m5!1s0x8644b51ad11e7a0d:0x1e8e4e3e7e5c9e5a!8m2!3d30.2449438!4d-97.7465625!16s%2Fg%2F1hhx2lx40?entry=ttu" target="_blank" rel="noopener noreferrer">South Congress (78704)</a>
+            </h4>
             <ul style="margin: 0; padding-left: 20px">
               <li><strong>Income:</strong> $101,944 average</li>
               <li><strong>Walkability:</strong> 79/100</li>
@@ -468,7 +552,9 @@
           </div>
 
           <div class="location-card">
-            <h4>Mueller</h4>
+            <h4>
+              <a href="https://www.google.com/maps/place/Mueller,+Austin,+TX/@30.2953983,-97.7135287,15z/data=!3m1!4b1!4m6!3m5!1s0x8644ca07e6f3f3f3:0x1e8e4e3e7e5c9e5a!8m2!3d30.2953983!4d-97.7072824!16s%2Fg%2F11b6z9z9z9?entry=ttu" target="_blank" rel="noopener noreferrer">Mueller</a>
+            </h4>
             <ul style="margin: 0; padding-left: 20px">
               <li><strong>Income:</strong> $90K-110K estimated</li>
               <li><strong>Type:</strong> Master-planned family community</li>
@@ -483,7 +569,9 @@
           </div>
 
           <div class="location-card">
-            <h4>Tarrytown (78703)</h4>
+            <h4>
+              <a href="https://www.google.com/maps/place/Tarrytown,+Austin,+TX+78703/@30.29576,-97.7913151,14z/data=!3m1!4b1!4m6!3m5!1s0x8644caa6e4ecaab5:0x9bd00701b6cc47e1!8m2!3d30.3008287!4d-97.7685096!16s%2Fm%2F02rm0qw?entry=ttu" target="_blank" rel="noopener noreferrer">Tarrytown (78703)</a>
+            </h4>
             <ul style="margin: 0; padding-left: 20px">
               <li><strong>Income:</strong> $144,637 median</li>
               <li><strong>Education:</strong> 90.6% bachelor's+</li>
@@ -495,7 +583,9 @@
           </div>
 
           <div class="location-card">
-            <h4>Bee Cave/Lakeway</h4>
+            <h4>
+              <a href="https://www.google.com/maps/place/Bee+Cave,+TX/@30.3084691,-97.9753845,13z/data=!3m1!4b1!4m6!3m5!1s0x865b4d3e3e3e3e3e:0x1e8e4e3e7e5c9e5a!8m2!3d30.3084691!4d-97.9566345!16s%2Fm%2F0102qjqj?entry=ttu" target="_blank" rel="noopener noreferrer">Bee Cave/Lakeway</a>
+            </h4>
             <ul style="margin: 0; padding-left: 20px">
               <li><strong>Income:</strong> $113K-165K median</li>
               <li><strong>Distance:</strong> 12-15 miles west</li>
@@ -574,9 +664,12 @@
         <div class="competitor-card">
           <h4>
             <a href="https://www.houndstoothcoffee.com/" target="_blank" rel="noopener noreferrer">Houndstooth Coffee</a>
-            <a href="https://houndstooth-coffee.square.site/" class="menu-badge" target="_blank" rel="noopener noreferrer">Menu</a>
           </h4>
-          <div class="price-tag">$4-7+</div>
+          <div class="badge-container">
+            <div class="price-tag">$4-7+</div>
+            <a href="https://houndstooth-coffee.square.site/" class="menu-badge" target="_blank" rel="noopener noreferrer">Menu</a>
+            <a href="https://www.google.com/maps/place/Downtown+Austin,+Austin,+TX/@30.2686733,-97.7460248,14z/data=!3m1!4b1!4m6!3m5!1s0x8644b50bba444723:0x711d88b3bc38df33!8m2!3d30.2669444!4d-97.7427778!16s%2Fm%2F0pcw52b?entry=ttu" class="location-badge" target="_blank" rel="noopener noreferrer">Downtown</a>
+          </div>
           <ul>
             <li>6 locations including Frost Tower downtown, Domain</li>
             <li>Vertical integration (owns Tweed roastery)</li>
@@ -589,9 +682,12 @@
         <div class="competitor-card">
           <h4>
             <a href="https://www.figure8coffeepurveyors.com/" target="_blank" rel="noopener noreferrer">Figure 8 Coffee Purveyors</a>
-            <a href="https://www.figure8coffeepurveyors.com/collections/roasted-coffee" class="menu-badge" target="_blank" rel="noopener noreferrer">Menu</a>
           </h4>
-          <div class="price-tag">$4-7</div>
+          <div class="badge-container">
+            <div class="price-tag">$4-7</div>
+            <a href="https://www.figure8coffeepurveyors.com/collections/roasted-coffee" class="menu-badge" target="_blank" rel="noopener noreferrer">Menu</a>
+            <a href="https://www.google.com/maps/place/East+Austin,+Austin,+TX/@30.2633747,-97.7084289,14z/data=!3m1!4b1!4m6!3m5!1s0x8644ca2277a082f5:0x5c2e62b0c5eadd25!8m2!3d30.2625843!4d-97.7003287!16s%2Fm%2F0264lcm?entry=ttu" class="location-badge" target="_blank" rel="noopener noreferrer">East Austin</a>
+          </div>
           <ul>
             <li>"Where baristas go for coffee" (self-described)</li>
             <li>Rotating national roasters + in-house roasting</li>
@@ -603,10 +699,13 @@
         <div class="competitor-card">
           <h4>
             <a href="https://proudmarycoffee.com/" target="_blank" rel="noopener noreferrer">Proud Mary</a>
-            <a href="https://proudmarycoffee.com/pages/proud-mary-cafe-austin" class="menu-badge" target="_blank" rel="noopener noreferrer">Menu</a>
           </h4>
-          <div class="price-tag">$16 pour-overs</div>
-          <div class="price-tag">$23 coffee flights</div>
+          <div class="badge-container">
+            <div class="price-tag">$16 pour-overs</div>
+            <div class="price-tag">$23 coffee flights</div>
+            <a href="https://proudmarycoffee.com/pages/proud-mary-cafe-austin" class="menu-badge" target="_blank" rel="noopener noreferrer">Menu</a>
+            <a href="https://www.google.com/maps/place/South+Lamar,+Austin,+TX/@30.2507692,-97.7903345,15z/data=!3m1!4b1!4m6!3m5!1s0x8644b4f3e8e3f3f3:0x1e8e4e3e7e5c9e5a!8m2!3d30.2507692!4d-97.7840882!16s%2Fg%2F11b6yqvp4w?entry=ttu" class="location-badge" target="_blank" rel="noopener noreferrer">South Lamar</a>
+          </div>
           <ul>
             <li>Australian cafe culture</li>
             <li>Michelin Guide recognition</li>
@@ -620,9 +719,12 @@
         <div class="competitor-card">
           <h4>
             <a href="https://www.intelligentsia.com/" target="_blank" rel="noopener noreferrer">Intelligentsia</a>
-            <a href="https://www.intelligentsia.com/pages/austin-coffeebar" class="menu-badge" target="_blank" rel="noopener noreferrer">Menu</a>
           </h4>
-          <div class="price-tag">$6.75 nitro</div>
+          <div class="badge-container">
+            <div class="price-tag">$6.75 nitro</div>
+            <a href="https://www.intelligentsia.com/pages/austin-coffeebar" class="menu-badge" target="_blank" rel="noopener noreferrer">Menu</a>
+            <a href="https://www.google.com/maps/place/Downtown+Austin,+Austin,+TX/@30.2686733,-97.7460248,14z/data=!3m1!4b1!4m6!3m5!1s0x8644b50bba444723:0x711d88b3bc38df33!8m2!3d30.2669444!4d-97.7427778!16s%2Fm%2F0pcw52b?entry=ttu" class="location-badge" target="_blank" rel="noopener noreferrer">Downtown</a>
+          </div>
           <ul>
             <li>Chicago-based, Peet's-owned</li>
             <li>Downtown location at Facebook building</li>
@@ -633,9 +735,12 @@
         <div class="competitor-card">
           <h4>
             <a href="https://mananaaustin.com/" target="_blank" rel="noopener noreferrer">Mañana</a>
-            <a href="https://mananaaustin.com/south-congress" class="menu-badge" target="_blank" rel="noopener noreferrer">Menu</a>
           </h4>
-          <div class="price-tag">$5-7 drinks</div>
+          <div class="badge-container">
+            <div class="price-tag">$5-7 drinks</div>
+            <a href="https://mananaaustin.com/south-congress" class="menu-badge" target="_blank" rel="noopener noreferrer">Menu</a>
+            <a href="https://www.google.com/maps/place/South+Congress,+Austin,+TX/@30.2449438,-97.7528088,15z/data=!3m1!4b1!4m6!3m5!1s0x8644b51ad11e7a0d:0x1e8e4e3e7e5c9e5a!8m2!3d30.2449438!4d-97.7465625!16s%2Fg%2F1hhx2lx40?entry=ttu" class="location-badge" target="_blank" rel="noopener noreferrer">South Congress</a>
+          </div>
           <ul>
             <li>South Congress Hotel location</li>
             <li>Cuvée Coffee partnership</li>
@@ -649,9 +754,12 @@
         <div class="competitor-card">
           <h4>
             <a href="https://desnudocoffee.com/" target="_blank" rel="noopener noreferrer">Desnudo Coffee</a>
-            <a href="https://desnudocoffee.com/pages/our-current-menu" class="menu-badge" target="_blank" rel="noopener noreferrer">Menu</a>
           </h4>
-          <div class="price-tag">$4-7 drinks</div>
+          <div class="badge-container">
+            <div class="price-tag">$4-7 drinks</div>
+            <a href="https://desnudocoffee.com/pages/our-current-menu" class="menu-badge" target="_blank" rel="noopener noreferrer">Menu</a>
+            <a href="https://www.google.com/maps/place/East+Austin,+Austin,+TX/@30.2633747,-97.7084289,14z/data=!3m1!4b1!4m6!3m5!1s0x8644ca2277a082f5:0x5c2e62b0c5eadd25!8m2!3d30.2625843!4d-97.7003287!16s%2Fm%2F0264lcm?entry=ttu" class="location-badge" target="_blank" rel="noopener noreferrer">East Austin</a>
+          </div>
           <ul>
             <li>
               <strong>Locations:</strong> East Austin, Downtown (Fareground),
@@ -679,8 +787,13 @@
         <div class="competitor-card" style="border-left-color: #c08862">
           <h4>
             <a href="https://www.lalalandkindcafe.com/" target="_blank" rel="noopener noreferrer">La La Land Kind Cafe</a> (Opened July 2025)
-            <a href="https://lalalandkindcafe.com/pages/menu" class="menu-badge" target="_blank" rel="noopener noreferrer">Menu</a>
           </h4>
+          <div class="badge-container">
+            <div class="price-tag">$5-7 drinks</div>
+            <div class="price-tag">$10 toasts</div>
+            <a href="https://lalalandkindcafe.com/pages/menu" class="menu-badge" target="_blank" rel="noopener noreferrer">Menu</a>
+            <a href="https://www.google.com/maps/place/South+Congress,+Austin,+TX/@30.2449438,-97.7528088,15z/data=!3m1!4b1!4m6!3m5!1s0x8644b51ad11e7a0d:0x1e8e4e3e7e5c9e5a!8m2!3d30.2449438!4d-97.7465625!16s%2Fg%2F1hhx2lx40?entry=ttu" class="location-badge" target="_blank" rel="noopener noreferrer">South Congress</a>
+          </div>
           <ul>
             <li><strong>Location:</strong> 1400 S Congress Ave</li>
             <li>20+ locations across TX/CA, Dallas-based</li>
@@ -692,8 +805,12 @@
         <div class="competitor-card" style="border-left-color: #c08862">
           <h4>
             <a href="https://www.blackfoxcoffee.com/" target="_blank" rel="noopener noreferrer">Black Fox Coffee</a> (Opening late 2025/early 2026)
-            <span class="menu-badge disabled">Menu</span>
           </h4>
+          <div class="badge-container">
+            <div class="price-tag">$7-8+ drinks</div>
+            <span class="menu-badge disabled">Menu</span>
+            <a href="https://www.google.com/maps/place/Downtown+Austin,+Austin,+TX/@30.2686733,-97.7460248,14z/data=!3m1!4b1!4m6!3m5!1s0x8644b50bba444723:0x711d88b3bc38df33!8m2!3d30.2669444!4d-97.7427778!16s%2Fm%2F0pcw52b?entry=ttu" class="location-badge" target="_blank" rel="noopener noreferrer">Downtown</a>
+          </div>
           <ul>
             <li><strong>Location:</strong> Near Indeed Tower downtown</li>
             <li>NYC-based with 4 existing locations</li>
