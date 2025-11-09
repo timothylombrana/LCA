@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Austin Market Analysis - La Cabra Coffee</title>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
     <style>
       * {
         margin: 0;
@@ -136,6 +136,13 @@
         border-radius: 2px;
         text-align: center;
         margin: 10px 0;
+        transition: transform 0.2s ease, background-color 0.2s ease;
+        cursor: default;
+      }
+
+      .stat-box:hover {
+        transform: scale(1.03);
+        background: #0a3d47;
       }
 
       .stat-box .number {
@@ -222,7 +229,7 @@
       td {
         padding: 15px;
         text-align: left;
-        border-bottom: 1px solid #e9ecef;
+        border-bottom: 1px solid #dde1e5;
       }
 
       th {
@@ -274,6 +281,111 @@
         overflow-x: auto;
         -webkit-overflow-scrolling: touch;
         margin: 20px 0;
+      }
+
+      /* Print styles */
+      @media print {
+        body {
+          background: white;
+        }
+
+        .card {
+          box-shadow: none;
+          page-break-inside: avoid;
+        }
+
+        header {
+          box-shadow: none;
+        }
+
+        .chart-container {
+          height: 300px;
+          page-break-inside: avoid;
+        }
+
+        a {
+          text-decoration: none;
+          color: inherit;
+        }
+
+        a::after {
+          content: " (" attr(href) ")";
+          font-size: 0.8em;
+          color: #666;
+        }
+
+        .menu-badge::after,
+        .location-badge::after {
+          content: none !important;
+        }
+
+        .summary-box {
+          background: #0a3d47 !important;
+          -webkit-print-color-adjust: exact;
+          print-color-adjust: exact;
+        }
+      }
+
+      /* Improved hover effects for stat boxes */
+      .stat-box {
+        transition: transform 0.2s ease, background-color 0.2s ease;
+        cursor: default;
+      }
+
+      .stat-box:hover {
+        transform: translateY(-4px);
+        background: #0a3d47;
+      }
+
+      /* Summary box styles moved from inline */
+      .summary-section {
+        background: rgba(255, 255, 255, 0.2);
+        padding: 20px;
+        border-radius: 10px;
+        margin: 20px 0;
+      }
+
+      .summary-section h4 {
+        color: white;
+        margin-top: 0;
+      }
+
+      .summary-section ul {
+        margin: 10px 0;
+      }
+
+      /* Print styles */
+      @media print {
+        body {
+          background: white;
+        }
+
+        .card {
+          box-shadow: none;
+          page-break-inside: avoid;
+        }
+
+        header {
+          box-shadow: none;
+        }
+
+        .chart-container {
+          height: 300px;
+        }
+
+        a {
+          text-decoration: none;
+          color: inherit;
+        }
+
+        a::after {
+          content: none !important;
+        }
+
+        .menu-badge::after,
+        .location-badge::after {
+          content: none !important;
+        }
       }
 
       @media (max-width: 768px) {
@@ -474,6 +586,16 @@
           margin-left: 0;
         }
       }
+
+      @media (max-width: 480px) {
+        .stats-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .chart-container {
+          height: 250px;
+        }
+      }
     </style>
   </head>
   <body>
@@ -599,7 +721,7 @@
       <div class="card">
         <h2>Commercial Rent Analysis</h2>
         <div class="chart-container">
-          <canvas id="rentChart"></canvas>
+          <canvas id="rentChart" role="img" aria-label="Bar chart comparing annual rent per square foot across Austin neighborhoods"></canvas>
         </div>
 
         <h3>Real Estate Cost Examples (3,000 sq ft)</h3>
@@ -782,6 +904,26 @@
           </ul>
         </div>
 
+        <div class="competitor-card">
+          <h4>
+            <a href="https://www.daydreamer.coffee/" target="_blank" rel="noopener noreferrer">Daydreamer Coffee</a>
+          </h4>
+          <div class="badge-container">
+            <div class="price-tag">$5-7 drinks</div>
+            <a href="https://www.daydreamer.coffee/menu" class="menu-badge" target="_blank" rel="noopener noreferrer">Menu</a>
+            <a href="https://www.google.com/maps/place/Rainey+Street,+Austin,+TX/@30.2600,-97.7380,16z/data=!3m1!4b1!4m6!3m5!1s0x8644b50f8e8e8e8e:0x1e8e4e3e7e5c9e5a!8m2!3d30.2600!4d-97.7380!16s%2Fg%2F11b6z9z9z9?entry=ttu" class="location-badge" target="_blank" rel="noopener noreferrer">Rainey St</a>
+          </div>
+          <ul>
+            <li><strong>Locations:</strong> Rainey Street (80 Rainey St), West Campus (2513 Seton Ave - Rambler)</li>
+            <li>Two distinct locations serving different neighborhoods</li>
+            <li>Rainey: Downtown entertainment district positioning</li>
+            <li>Rambler: UT Austin student/remote work haven</li>
+            <li>
+              <strong>Menu:</strong> Hand-crafted espresso, specialty matcha (oat milk & honey), Honey Oat Latte, local bites
+            </li>
+          </ul>
+        </div>
+
         <h3>New Entrants (2025)</h3>
 
         <div class="competitor-card" style="border-left-color: #c08862">
@@ -837,7 +979,7 @@
         <h2>Market Benchmarks</h2>
 
         <div class="chart-container">
-          <canvas id="volumeChart"></canvas>
+          <canvas id="volumeChart" role="img" aria-label="Bar chart showing minimum and maximum daily customer volume by coffee shop type"></canvas>
         </div>
 
         <h3>Transaction Volumes (Austin Market)</h3>
@@ -884,7 +1026,7 @@
 
         <h3>Daypart Distribution</h3>
         <div class="chart-container">
-          <canvas id="daypartChart"></canvas>
+          <canvas id="daypartChart" role="img" aria-label="Doughnut chart showing revenue distribution by time of day"></canvas>
         </div>
 
         <div class="highlight">
@@ -909,18 +1051,11 @@
           has numerous specialty roasters and shows 9.5% annual growth.
         </p>
 
-        <div
-          style="
-            background: rgba(255, 255, 255, 0.2);
-            padding: 20px;
-            border-radius: 10px;
-            margin: 20px 0;
-          "
-        >
-          <h4 style="color: white; margin-top: 0">
+        <div class="summary-section">
+          <h4>
             Recent Competitive Activity
           </h4>
-          <ul style="margin: 10px 0">
+          <ul>
             <li>
               <strong>La La Land</strong> (South Congress, July 2025):
               Food-first Instagram concept
@@ -936,15 +1071,9 @@
           </ul>
         </div>
 
-        <div
-          style="
-            background: rgba(255, 255, 255, 0.2);
-            padding: 20px;
-            border-radius: 10px;
-          "
-        >
-          <h4 style="color: white; margin-top: 0">Key Considerations</h4>
-          <ul style="margin: 10px 0">
+        <div class="summary-section">
+          <h4>Key Considerations</h4>
+          <ul>
             <li>
               <strong>Downtown:</strong> Highest incomes ($154K median), dense
               weekday traffic, premium rents ($40-60/sq ft)
@@ -1021,6 +1150,13 @@
               },
               color: "#0a3d47",
             },
+            tooltip: {
+              callbacks: {
+                label: function(context) {
+                  return '$' + context.parsed.y + '/sq ft annually';
+                }
+              }
+            }
           },
           scales: {
             y: {
@@ -1101,6 +1237,13 @@
                 padding: 15,
               },
             },
+            tooltip: {
+              callbacks: {
+                label: function(context) {
+                  return context.dataset.label + ': ' + context.parsed.y + ' customers';
+                }
+              }
+            }
           },
           scales: {
             y: {
@@ -1185,6 +1328,13 @@
                 usePointStyle: true,
               },
             },
+            tooltip: {
+              callbacks: {
+                label: function(context) {
+                  return context.label + ': ' + context.parsed + '% of daily sales';
+                }
+              }
+            }
           },
         },
       });
